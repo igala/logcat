@@ -12,13 +12,15 @@ class Logcat {
   /// [MethodChannel] used to communicate with the platform side.
   static const platform = const MethodChannel('app.channel.logcat');
 
+  static var platformVersion;
+
   /// Fetches the app logs by executing the logcat command-line tool.
   /// May throw [PlatformException] from [MethodChannel].
-  static Future<String> execute() async {
+  static Future<String?> execute() async {
     if (Platform.isIOS) {
       return 'Logs can only be fetched from Android Devices presently.';
     }
-    String logs;
+    String? logs;
     try {
       logs = await platform.invokeMethod('execLogcat');
     } on PlatformException catch (e) {

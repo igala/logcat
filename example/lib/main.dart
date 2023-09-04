@@ -33,9 +33,9 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> _getLogs() async {
-    final String logs = await Logcat.execute();
+    final String? logs = await Logcat.execute();
     setState(() {
-      _logs = logs;
+      _logs = logs!;
     });
   }
 }
